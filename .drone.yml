@@ -1,0 +1,25 @@
+nd: pipeline
+name: linux-amd64
+
+platform:
+  os: linux
+  arch: amd64
+
+
+steps:
+- name: publish
+  pull: always
+  image: plugins/docker:linux-amd64
+  settings:
+    auto_tag: true
+    auto_tag_suffix: linux-amd64
+    dockerfile: Dockerfile
+    password:
+      from_secret: docker_password
+    repo: nakatanakatana/drone-plugins-firebase-deploy
+    username:
+      from_secret: docker_username
+  when:
+    event:
+    - push
+    - tag
