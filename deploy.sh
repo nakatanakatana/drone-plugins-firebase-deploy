@@ -5,6 +5,7 @@
 # $ONLY                      : --onlyに渡す引数
 # $EXCEPT                    : --exceptに渡す引数
 
+set -e
 
 OPTION=""
 
@@ -22,5 +23,4 @@ fi
 
 echo "$FIREBASE_CREDENTIAL_BASE64" | base64 -d > /cred.json
 
-GOOGLE_APPLICATION_CREDENTIALS=/cred.json firebase deploy $OPTION
-rm /cred.json
+GOOGLE_APPLICATION_CREDENTIALS="/cred.json" firebase deploy $OPTION && rm /cred.json
